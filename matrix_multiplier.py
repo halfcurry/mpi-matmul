@@ -43,19 +43,47 @@ def serial_matrix_multiply(A, B):
     return C
 
 def distribute_rows(A, size):
-    """Distributes rows of matrix A (list of lists) to processes, handling uneven division."""
+    """
+    Distributes rows of matrix A (list of lists) to processes, handling uneven division.
+    This function calculates which rows each MPI process will receive.
+
+    Args:
+        A (list of lists): The full input matrix.
+        size (int): The total number of MPI processes.
+
+    Returns:
+        tuple: A tuple containing:
+            - send_data (list of list of lists): A list where each element is a
+                                                 sub-matrix (chunk of rows) for one process.
+            - rows_per_process (list of int): Number of rows assigned to each process.
+            - displacements (list of int): Starting row index for each process's chunk
+                                          in the original matrix.
+    """
     total_rows = len(A)
+    
+    # 1. Calculate base number of rows for each process.
+    #    Each process initially gets 'total_rows // size' rows.
     rows_per_process = [total_rows // size] * size
+
+    # 2. Distribute remaining rows (if any) to the first few processes.
+    #    If total_rows is not perfectly divisible by size, there will be a remainder.
+    #    These extra rows are distributed one by one to the initial processes.
     for i in range(total_rows % size):
         rows_per_process[i] += 1
 
+    # 3. Calculate displacement (starting row index) for each process.
+    #    This helps to easily slice the original matrix.
+    #    e.g., if rows_per_process is [3, 2, 2], displacements will be [0, 3, 5]
     displacements = [sum(rows_per_process[:i]) for i in range(size)]
 
+    # 4. Create the chunks of data (sub-matrices) to be sent.
+    #    Each element in send_data is a slice (list of lists) from the original matrix A.
     send_data = []
     for i in range(size):
         start_row = displacements[i]
         end_row = start_row + rows_per_process[i]
-        send_data.append(A[start_row:end_row]) # A[start:end] works directly on lists
+        send_data.append(A[start_row:end_row]) # Slices matrix A to get the chunk for process 'i'
+
     return send_data, rows_per_process, displacements
 
 def local_matrix_multiply(local_A_rows, B):
