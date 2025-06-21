@@ -1,0 +1,264 @@
+@halfcurry ➜ /workspaces/mpi-matmul (main) $ python benchmark_runner.py 50 3
+
+--- Benchmarking Matrix Multiplication (N=50, Runs per test=3) ---
+WARNING: Pure Python matrix multiplication is very slow. Use small N values (e.g., 50-150).
+
+
+--- Running Serial Benchmarks (N=50) ---
+Executing: python matrix_multiplier.py --mode serial -N 50
+Serial Run 1: 0.019043 seconds
+Executing: python matrix_multiplier.py --mode serial -N 50
+Serial Run 2: 0.018998 seconds
+Executing: python matrix_multiplier.py --mode serial -N 50
+Serial Run 3: 0.020278 seconds
+
+Average Serial Time (3 runs): 0.019440 +/- 0.000593 seconds
+
+--- Running MPI Benchmarks (N=50, Processes=1) ---
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 50
+MPI 1 Processes Run 1: 0.019107 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 50
+MPI 1 Processes Run 2: 0.018753 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 50
+MPI 1 Processes Run 3: 0.020856 seconds
+
+Average MPI Time (1 Processes, 3 runs): 0.019572 +/- 0.000919 seconds
+
+--- Running MPI Benchmarks (N=50, Processes=2) ---
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 50
+MPI 2 Processes Run 1: 0.010307 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 50
+MPI 2 Processes Run 2: 0.009773 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 50
+MPI 2 Processes Run 3: 0.009309 seconds
+
+Average MPI Time (2 Processes, 3 runs): 0.009796 +/- 0.000408 seconds
+
+--- Running MPI Benchmarks (N=50, Processes=3) ---
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 50
+MPI 3 Processes Run 1: 0.013371 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 50
+MPI 3 Processes Run 2: 0.011622 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 50
+MPI 3 Processes Run 3: 0.011992 seconds
+
+Average MPI Time (3 Processes, 3 runs): 0.012328 +/- 0.000753 seconds
+
+--- Running MPI Benchmarks (N=50, Processes=4) ---
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 50
+MPI 4 Processes Run 1: 0.009149 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 50
+MPI 4 Processes Run 2: 0.009484 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 50
+MPI 4 Processes Run 3: 0.009114 seconds
+
+Average MPI Time (4 Processes, 3 runs): 0.009249 +/- 0.000167 seconds
+
+--- Benchmark Summary ---
+Mode                 | Avg Time (s)    | Std Dev (s)     | Speedup    | Efficiency
+--------------------------------------------------------------------------------
+Serial               | 0.019440        | 0.000593        | 1.00x      | N/A       
+MPI 1 Processes      | 0.019572        | 0.000919        | 0.99x      | 99.32%    
+MPI 2 Processes      | 0.009796        | 0.000408        | 1.98x      | 99.22%    
+MPI 3 Processes      | 0.012328        | 0.000753        | 1.58x      | 52.56%    
+MPI 4 Processes      | 0.009249        | 0.000167        | 2.10x      | 52.55%    
+
+Benchmarking complete.
+@halfcurry ➜ /workspaces/mpi-matmul (main) $ python benchmark_runner.py 100 3
+
+--- Benchmarking Matrix Multiplication (N=100, Runs per test=3) ---
+WARNING: Pure Python matrix multiplication is very slow. Use small N values (e.g., 50-150).
+
+
+--- Running Serial Benchmarks (N=100) ---
+Executing: python matrix_multiplier.py --mode serial -N 100
+Serial Run 1: 0.141633 seconds
+Executing: python matrix_multiplier.py --mode serial -N 100
+Serial Run 2: 0.142798 seconds
+Executing: python matrix_multiplier.py --mode serial -N 100
+Serial Run 3: 0.149877 seconds
+
+Average Serial Time (3 runs): 0.144769 +/- 0.003643 seconds
+
+--- Running MPI Benchmarks (N=100, Processes=1) ---
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 100
+MPI 1 Processes Run 1: 0.172450 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 100
+MPI 1 Processes Run 2: 0.157620 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 100
+MPI 1 Processes Run 3: 0.143858 seconds
+
+Average MPI Time (1 Processes, 3 runs): 0.157976 +/- 0.011675 seconds
+
+--- Running MPI Benchmarks (N=100, Processes=2) ---
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 100
+MPI 2 Processes Run 1: 0.084174 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 100
+MPI 2 Processes Run 2: 0.089332 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 100
+MPI 2 Processes Run 3: 0.076578 seconds
+
+Average MPI Time (2 Processes, 3 runs): 0.083361 +/- 0.005238 seconds
+
+--- Running MPI Benchmarks (N=100, Processes=3) ---
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 100
+MPI 3 Processes Run 1: 0.088673 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 100
+MPI 3 Processes Run 2: 0.087750 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 100
+MPI 3 Processes Run 3: 0.089083 seconds
+
+Average MPI Time (3 Processes, 3 runs): 0.088502 +/- 0.000557 seconds
+
+--- Running MPI Benchmarks (N=100, Processes=4) ---
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 100
+MPI 4 Processes Run 1: 0.068667 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 100
+MPI 4 Processes Run 2: 0.077514 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 100
+MPI 4 Processes Run 3: 0.077016 seconds
+
+Average MPI Time (4 Processes, 3 runs): 0.074399 +/- 0.004058 seconds
+
+--- Benchmark Summary ---
+Mode                 | Avg Time (s)    | Std Dev (s)     | Speedup    | Efficiency
+--------------------------------------------------------------------------------
+Serial               | 0.144769        | 0.003643        | 1.00x      | N/A       
+MPI 1 Processes      | 0.157976        | 0.011675        | 0.92x      | 91.64%    
+MPI 2 Processes      | 0.083361        | 0.005238        | 1.74x      | 86.83%    
+MPI 3 Processes      | 0.088502        | 0.000557        | 1.64x      | 54.53%    
+MPI 4 Processes      | 0.074399        | 0.004058        | 1.95x      | 48.65%    
+
+Benchmarking complete.
+@halfcurry ➜ /workspaces/mpi-matmul (main) $ python benchmark_runner.py 200 3
+
+--- Benchmarking Matrix Multiplication (N=200, Runs per test=3) ---
+WARNING: Pure Python matrix multiplication is very slow. Use small N values (e.g., 50-150).
+
+
+--- Running Serial Benchmarks (N=200) ---
+Executing: python matrix_multiplier.py --mode serial -N 200
+Serial Run 1: 1.311064 seconds
+Executing: python matrix_multiplier.py --mode serial -N 200
+Serial Run 2: 1.127881 seconds
+Executing: python matrix_multiplier.py --mode serial -N 200
+Serial Run 3: 1.114062 seconds
+
+Average Serial Time (3 runs): 1.184336 +/- 0.089788 seconds
+
+--- Running MPI Benchmarks (N=200, Processes=1) ---
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 200
+MPI 1 Processes Run 1: 1.133070 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 200
+MPI 1 Processes Run 2: 1.187945 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 200
+MPI 1 Processes Run 3: 1.190125 seconds
+
+Average MPI Time (1 Processes, 3 runs): 1.170380 +/- 0.026397 seconds
+
+--- Running MPI Benchmarks (N=200, Processes=2) ---
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 200
+MPI 2 Processes Run 1: 0.690536 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 200
+MPI 2 Processes Run 2: 0.585736 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 200
+MPI 2 Processes Run 3: 0.574366 seconds
+
+Average MPI Time (2 Processes, 3 runs): 0.616879 +/- 0.052290 seconds
+
+--- Running MPI Benchmarks (N=200, Processes=3) ---
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 200
+MPI 3 Processes Run 1: 0.697756 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 200
+MPI 3 Processes Run 2: 0.665680 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 200
+MPI 3 Processes Run 3: 0.688300 seconds
+
+Average MPI Time (3 Processes, 3 runs): 0.683912 +/- 0.013458 seconds
+
+--- Running MPI Benchmarks (N=200, Processes=4) ---
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 200
+MPI 4 Processes Run 1: 0.615130 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 200
+MPI 4 Processes Run 2: 0.546066 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 200
+MPI 4 Processes Run 3: 0.547243 seconds
+
+Average MPI Time (4 Processes, 3 runs): 0.569480 +/- 0.032283 seconds
+
+--- Benchmark Summary ---
+Mode                 | Avg Time (s)    | Std Dev (s)     | Speedup    | Efficiency
+--------------------------------------------------------------------------------
+Serial               | 1.184336        | 0.089788        | 1.00x      | N/A       
+MPI 1 Processes      | 1.170380        | 0.026397        | 1.01x      | 101.19%   
+MPI 2 Processes      | 0.616879        | 0.052290        | 1.92x      | 95.99%    
+MPI 3 Processes      | 0.683912        | 0.013458        | 1.73x      | 57.72%    
+MPI 4 Processes      | 0.569480        | 0.032283        | 2.08x      | 51.99%    
+
+Benchmarking complete.
+@halfcurry ➜ /workspaces/mpi-matmul (main) $ python benchmark_runner.py 400 3
+
+--- Benchmarking Matrix Multiplication (N=400, Runs per test=3) ---
+WARNING: Pure Python matrix multiplication is very slow. Use small N values (e.g., 50-150).
+
+
+--- Running Serial Benchmarks (N=400) ---
+Executing: python matrix_multiplier.py --mode serial -N 400
+Serial Run 1: 10.065846 seconds
+Executing: python matrix_multiplier.py --mode serial -N 400
+Serial Run 2: 9.412108 seconds
+Executing: python matrix_multiplier.py --mode serial -N 400
+Serial Run 3: 9.882609 seconds
+
+Average Serial Time (3 runs): 9.786854 +/- 0.275342 seconds
+
+--- Running MPI Benchmarks (N=400, Processes=1) ---
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 400
+MPI 1 Processes Run 1: 9.228720 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 400
+MPI 1 Processes Run 2: 9.935069 seconds
+Executing: mpiexec --oversubscribe -n 1 python matrix_multiplier.py --mode mpi -N 400
+MPI 1 Processes Run 3: 10.305403 seconds
+
+Average MPI Time (1 Processes, 3 runs): 9.823064 +/- 0.446632 seconds
+
+--- Running MPI Benchmarks (N=400, Processes=2) ---
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 400
+MPI 2 Processes Run 1: 4.659960 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 400
+MPI 2 Processes Run 2: 5.112331 seconds
+Executing: mpiexec --oversubscribe -n 2 python matrix_multiplier.py --mode mpi -N 400
+MPI 2 Processes Run 3: 4.952530 seconds
+
+Average MPI Time (2 Processes, 3 runs): 4.908274 +/- 0.187312 seconds
+
+--- Running MPI Benchmarks (N=400, Processes=3) ---
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 400
+MPI 3 Processes Run 1: 5.560599 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 400
+MPI 3 Processes Run 2: 5.396543 seconds
+Executing: mpiexec --oversubscribe -n 3 python matrix_multiplier.py --mode mpi -N 400
+MPI 3 Processes Run 3: 5.309539 seconds
+
+Average MPI Time (3 Processes, 3 runs): 5.422227 +/- 0.104091 seconds
+
+--- Running MPI Benchmarks (N=400, Processes=4) ---
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 400
+MPI 4 Processes Run 1: 4.482674 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 400
+MPI 4 Processes Run 2: 4.505845 seconds
+Executing: mpiexec --oversubscribe -n 4 python matrix_multiplier.py --mode mpi -N 400
+MPI 4 Processes Run 3: 4.490768 seconds
+
+Average MPI Time (4 Processes, 3 runs): 4.493096 +/- 0.009602 seconds
+
+--- Benchmark Summary ---
+Mode                 | Avg Time (s)    | Std Dev (s)     | Speedup    | Efficiency
+--------------------------------------------------------------------------------
+Serial               | 9.786854        | 0.275342        | 1.00x      | N/A       
+MPI 1 Processes      | 9.823064        | 0.446632        | 1.00x      | 99.63%    
+MPI 2 Processes      | 4.908274        | 0.187312        | 1.99x      | 99.70%    
+MPI 3 Processes      | 5.422227        | 0.104091        | 1.80x      | 60.17%    
+MPI 4 Processes      | 4.493096        | 0.009602        | 2.18x      | 54.45%    
+
+Benchmarking complete.
